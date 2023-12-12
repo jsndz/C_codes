@@ -1,23 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 100
-int top = -1;
-int stack[MAX_SIZE];
-
-void push();
-void pop();
+int rear = -1;
+int front = -1;
+int queue[MAX_SIZE];
+void enqueue();
+void dequeue();
+void peek();
 void display();
 void isEmpty();
 void isFull();
-void peek();
+
 void main()
 {
     int choice = 0;
     while (choice != 7)
     {
         printf("enter the operation to be performed\n");
-        printf("1.Push\n");
-        printf("2.Pop\n");
+        printf("1.Enqueue\n");
+        printf("2.Dequeue\n");
         printf("3.Display\n");
         printf("4.Isempty\n");
         printf("5.Isfull\n");
@@ -27,10 +28,10 @@ void main()
         switch (choice)
         {
         case 1:
-            push();
+            enqueue();
             break;
         case 2:
-            pop();
+            dequeue();
             break;
         case 3:
             display();
@@ -52,73 +53,83 @@ void main()
         }
     }
 }
-void push()
+void enqueue()
 {
     int x;
-    printf("\nEnter the value to be pushed: ");
+    printf("\nEnter the value to be enqueued: ");
     scanf("%d", &x);
-    if (top == MAX_SIZE - 1)
+    if (rear == MAX_SIZE - 1)
     {
-        printf("\nStack Overflowed");
+        printf("\nQueue Overflowed");
     }
     else
     {
-        top = top + 1;
-        stack[top] = x;
-    }
-}
-void pop()
-{
-    if (top == -1)
-    {
-        printf("\nStack Underflowed");
-    }
-    else
-    {
-        top = top - 1;
+        if (front = -1)
+        {
+            front = 0;
+        }
+        rear++;
+        queue[rear] = x;
     }
 }
 void display()
 {
     int i;
     printf("\nThe Stack is \n");
-    for (i = 0; i <= top; i++)
+    for (i = front; i <= rear; i++)
     {
-        printf("%d", stack[i]);
+        printf("%d", queue[i]);
         printf("\t");
     }
     printf("\n");
 }
-void isEmpty()
+
+void dequeue()
 {
-    if (top == -1)
+    if (front == -1)
     {
-        printf("\nStack is empty\n");
+        printf("\nQueue Underflowed");
     }
     else
     {
-        printf("\nStack is not empty\n");
-    }
-}
-void isFull()
-{
-    if (top == MAX_SIZE - 1)
-    {
-        printf("\n Stack is full\n");
-    }
-    else
-    {
-        printf("\nStack is not full\n");
+        front++;
+        if (front > rear)
+        {
+            front = rear = -1;
+        }
     }
 }
 void peek()
 {
-    if (top == -1)
+    if (rear == -1)
     {
-        printf("\nStack is Underflowed\n");
+        printf("\nQueue is Underflowed\n");
     }
     else
     {
-        printf("\n%d\n", stack[top]);
+        printf("\n%d\n", queue[rear]);
+    }
+}
+
+void isEmpty()
+{
+    if (front == -1)
+    {
+        printf("\nQueue is empty\n");
+    }
+    else
+    {
+        printf("\nQueue is not empty\n");
+    }
+}
+void isFull()
+{
+    if (rear == MAX_SIZE - 1)
+    {
+        printf("\n Queue is full\n");
+    }
+    else
+    {
+        printf("\nQueue is not full\n");
     }
 }
