@@ -1,2 +1,4 @@
-Username: Joa
-Total Score:50
++-------------------------+
+Username: jai
+Total Score:49
++-------------------------+

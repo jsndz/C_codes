@@ -1,2 +1,5 @@
-Username: Joa
++-------------------------+
+Username: jai
 Number Guessing Game: 6 attempts
+Rock Paper Scissor : 3 Games
++-------------------------+
